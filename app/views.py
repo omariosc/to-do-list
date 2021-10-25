@@ -1,5 +1,8 @@
-from flask import render_template
+from flask import render_template, flash
 from app import app
+from .forms import CreateAssessment
+from app import db, models
+import datetime
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -7,8 +10,13 @@ def home():
 	return render_template('home.html',title='All',home=home)
 @app.route('/create_assessment', methods=['GET', 'POST'])
 def create():
-    create={'description':'Create Assessment'}
-    return render_template('create.html',title='Create',create=create)
+	form = CreateAssessment()
+	if form.validate_on_submit():
+		flash('Successfully created assessment.')
+		task = models.Assessment(title=form.title.data,code=form.code.data,deadline=form.deadline.data,description=form.description.data)
+		db.session.add(task)
+		db.session.commit() 
+	return render_template('create.html',title='Create',form=form)
 @app.route('/complete_assessment', methods=['GET', 'POST'])
 def complete():
 	complete={'description':'Completed Assessments'}
