@@ -6,7 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/styles.css">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
     <title>To Do List</title>
+    {% endif %}
   </head>
   <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -23,20 +28,19 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-4"></div>
-          <div class="col-5">
-            {% with messages = get_flashed_messages() %}
-              {% if messages %}
-                {% for message in messages %}
-                <div class="alert alert-success">
-                     {{ message }}
-                </div>
-                {% endfor %}
-              {% endif %}
-            {% endwith %}
-          </div>
+        <div class="col-5">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-success">
+                    {{ message }}
+              </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
         </div>
-        {% block content %}{% endblock %}
       </div>
+      {% block content %}{% endblock %}
     </div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
