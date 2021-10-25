@@ -7,7 +7,7 @@ import datetime
 @app.route('/', methods=['GET', 'POST'])
 def home():
 	home={'description':'All Assessments'}
-	return render_template('home.html',title='All',home=home)
+	return render_template('home.html',title='All Assessments',home=home)
 @app.route('/create_assessment', methods=['GET', 'POST'])
 def create():
 	form = CreateAssessment()
@@ -16,12 +16,12 @@ def create():
 		task = models.Assessment(title=form.title.data,code=form.code.data,deadline=form.deadline.data,description=form.description.data)
 		db.session.add(task)
 		db.session.commit() 
-	return render_template('create.html',title='Create',form=form)
+	return render_template('create.html',title='Create Assessments',form=form)
 @app.route('/complete_assessment', methods=['GET', 'POST'])
 def complete():
 	complete={'description':'Completed Assessments'}
-	return render_template('complete.html',title='Completed',complete=complete)
+	return render_template('complete.html',title='Completed Assessments',complete=complete)
 @app.route('/uncomplete_assessment', methods=['GET', 'POST'])
 def uncomplete():
 	uncomplete={'description':'Uncompleted Assessments'}
-	return render_template('uncomplete.html',title='Uncompleted',uncomplete=uncomplete)
+	return render_template('uncomplete.html',title='Uncompleted Asessments',uncomplete=uncomplete)
