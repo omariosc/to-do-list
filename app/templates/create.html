@@ -12,7 +12,7 @@
         {{ form.title(class_="form-control") }}
         {% for error in form.title.errors %}
         <div class="alert alert-danger w-100" role="alert">
-          [{{ error }}]
+          {{ error }}
         </div>
         {% endfor %}
         <br>
@@ -20,7 +20,7 @@
         {{ form.code(class_="form-control") }}
         {% for error in form.code.errors %}
         <div class="alert alert-danger" role="alert">
-          [{{ error }}]
+          {{ error }}
         </div>
         {% endfor %}
         <br>
@@ -28,7 +28,7 @@
         {{ form.deadline(class_="form-control", placeholder="dd-mm-yyyy") }}
         {% for error in form.deadline.errors %}
         <div class="alert alert-danger" role="alert">
-          [{{ error }}]
+          {{ error }}
         </div>
         {% endfor %}
         <br>
@@ -36,7 +36,7 @@
         {{ form.description(class_="form-control", style="height:200px") }}
         {% for error in form.description.errors %}
         <div class="alert alert-danger" role="alert">
-          [{{ error }}]
+          {{ error }}
         </div>
         {% endfor %}
         <br>
