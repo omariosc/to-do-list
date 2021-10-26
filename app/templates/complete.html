@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-
 <h1>Completed Assessments</h1>
-{{complete.description}}
+{{ description }}
+{% for task in tasks %}
+<br>
+<div>
+  <h3> {{ task.title }} </h3>
+  <div><strong>Module Code:</strong> {{ task.code }} </div>
+  <div><strong>Deadline:</strong> {{ task.deadline }} </div>
+  <div><strong>Status:</strong> {{ task.status }} </div>
+  <div> {{ task.description }} </div>
+</div>
+{% endfor %}
 {% endblock %}
