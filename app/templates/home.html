@@ -1,15 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>All Assessments</h1>
-{{ description }}
+<div class="row">
 {% for task in tasks %}
-<br>
-<div>
-  <h3> {{ task.title }} </h3>
-  <div><strong>Module Code:</strong> {{ task.code }} </div>
-  <div><strong>Deadline:</strong> {{ task.deadline }} </div>
-  <div><strong>Status:</strong> {{ task.status }} </div>
-  <div> {{ task.description }} </div>
+<div class="col-sm-6">
+  <br>
+  <div class="card border-dark mb-3 cardstyle">
+    <div class="card-body">
+      <h5 class="card-title"> {{ task.title }} </h5>
+      <p class="card-text">
+        <div><strong>Module Code:</strong> {{ task.code }}</div>
+        <div><strong>Deadline:</strong> {{ task.deadline }}</div>
+        <div>
+          <strong>Status:</strong>
+          {% if task.status == 0 %}
+            Uncompleted
+          {% else %}
+            Completed
+          {% endif %}
+        </div>
+        <br>
+        <div><strong>Description:</strong></div>
+        <div> {{ task.description }} </div>
+      </p>
+      <br>
+      <a href="/edit/{{ task.id }}" class="btn btn-dark card-link">Edit</a>
+      {% if task.status == 0 %}
+        <a href="/mark/{{ task.id }}" class="btn btn-dark card-link">Mark as Complete</a>
+      {% else %}
+        <a href="/unmark/{{ task.id }}" class="btn btn-dark card-link">Mark as Uncomplete</a>
+      {% endif %}
+      <a href="/delete/{{ task.id }}" class="btn btn-dark card-link">Delete Task</a>
+      <br>
+    </div>
+  </div>
 </div>
 {% endfor %}
+</div>
 {% endblock %}
