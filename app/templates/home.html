@@ -35,13 +35,13 @@
       <a href="/edit/{{ task.id }}" class="btn btn-dark card-link">Edit</a>
       <!-- If task in uncompleted show mark as complete button -->
       {% if task.status == 0 %}
-        <a href="/mark/{{ task.id }}" class="btn btn-dark card-link">Mark as Complete</a>
+        <a href="{{ link }}/mark/{{ task.id }}" class="btn btn-dark card-link">Mark as Complete</a>
       <!-- If task in completed show mark as uncomplete button -->
       {% else %}
-        <a href="/unmark/{{ task.id }}" class="btn btn-dark card-link">Mark as Uncomplete</a>
+        <a href="{{ link }}/unmark/{{ task.id }}" class="btn btn-dark card-link">Mark as Uncomplete</a>
       {% endif %}
       <!-- Delete button -->
-      <a href="/delete/{{ task.id }}" class="btn btn-dark card-link">Delete Task</a>
+      <a href="{{ link }}/delete/{{ task.id }}" class="btn btn-dark card-link">Delete Task</a>
       <br>
     </div>
   </div>
