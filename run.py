@@ -1,3 +1,4 @@
-# Runs app in debug mode
+# Runs app
 from app import app
-app.run(debug=True)
+# Disabled debug mode
+app.run(debug=False)
