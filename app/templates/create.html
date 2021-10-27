@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-
-<h1>Create Assessment</h1>
-<br>
 <div class="row">
   <div class="col-2"></div>
   <div class="col-8">
     <form method="post" name="create">
         {{ form.hidden_tag() }}
         <label>Title</label>
-        {{ form.title(class_="form-control") }}
+        {% if task != 0 %}
+          {{ form.title(class_="form-control", value=task.title) }}
+        {% else %}
+          {{ form.title(class_="form-control") }}
+        {% endif %}
         {% for error in form.title.errors %}
         <div class="alert alert-danger w-100" role="alert">
           {{ error }}
@@ -17,7 +18,11 @@
         {% endfor %}
         <br>
         <label>Module Code</label>
-        {{ form.code(class_="form-control") }}
+        {% if task != 0 %}
+          {{ form.code(class_="form-control", value=task.code) }}
+        {% else %}
+          {{ form.code(class_="form-control") }}
+        {% endif %}
         {% for error in form.code.errors %}
         <div class="alert alert-danger" role="alert">
           {{ error }}
@@ -25,7 +30,11 @@
         {% endfor %}
         <br>
         <label>Deadline</label>
-        {{ form.deadline(class_="form-control", placeholder="dd-mm-yyyy") }}
+        {% if task != 0 %}
+          {{ form.deadline(class_="form-control", value=task.deadline) }}
+        {% else %}
+          {{ form.deadline(class_="form-control") }}
+        {% endif %}
         {% for error in form.deadline.errors %}
         <div class="alert alert-danger" role="alert">
           {{ error }}
@@ -33,16 +42,23 @@
         {% endfor %}
         <br>
         <label>Description</label>
-        {{ form.description(class_="form-control", style="height:200px") }}
+        {% if task != 0 %}
+          {{ form.description(class_="form-control", placeholder=task.description) }}
+        {% else %}
+          {{ form.description(class_="form-control", rows="4") }}
+        {% endif %}
         {% for error in form.description.errors %}
         <div class="alert alert-danger" role="alert">
           {{ error }}
         </div>
         {% endfor %}
         <br>
-        <p><input type="submit" class="btn btn-dark" value="Create"></p>
+        {% if task != 0 %}
+          <p><input type="submit" class="btn btn-dark" value="Edit"></p>
+        {% else %}
+          <p><input type="submit" class="btn btn-dark" value="Create"></p>
+        {% endif %}
     </form>
   </div>
 </div>
-
 {% endblock %}
