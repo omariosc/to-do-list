@@ -13,7 +13,7 @@
       <!-- Asssment title-->
       <h5 class="card-title"> {{ task.title }} </h5>
       <!-- Assessment Details -->
-      <p class="card-text">  
+      <div class="card-text">  
         <div><strong>Module Code:</strong> {{ task.code }}</div>
         <div><strong>Deadline:</strong> {{ task.deadline }}</div>
         <div>
@@ -29,7 +29,7 @@
         <!-- Assessment Description -->
         <div><strong>Description:</strong></div>
         <div> {{ task.description }} </div>
-      </p>
+      </div>
       <br>
       <!-- Edit button -->
       <a href="/edit/{{ task.id }}" class="btn btn-dark card-link">Edit</a>
