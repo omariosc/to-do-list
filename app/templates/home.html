@@ -1,16 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- Creates a row for cards-->
 <div class="row">
+<!-- Iteraes through the tasks -->
 {% for task in tasks %}
+<!-- Allows display of two cards on the same row-->
 <div class="col-sm-6">
   <br>
+  <!-- Sets card border and custom width from style sheet-->
   <div class="card border-dark mb-3 cardstyle">
     <div class="card-body">
+      <!-- Asssment title-->
       <h5 class="card-title"> {{ task.title }} </h5>
-      <p class="card-text">
+      <!-- Assessment Details -->
+      <p class="card-text">  
         <div><strong>Module Code:</strong> {{ task.code }}</div>
         <div><strong>Deadline:</strong> {{ task.deadline }}</div>
         <div>
+          <!-- Displays tasks' status -->
           <strong>Status:</strong>
           {% if task.status == 0 %}
             Uncompleted
@@ -19,16 +26,21 @@
           {% endif %}
         </div>
         <br>
+        <!-- Assessment Description -->
         <div><strong>Description:</strong></div>
         <div> {{ task.description }} </div>
       </p>
       <br>
+      <!-- Edit button -->
       <a href="/edit/{{ task.id }}" class="btn btn-dark card-link">Edit</a>
+      <!-- If task in uncompleted show mark as complete button -->
       {% if task.status == 0 %}
         <a href="/mark/{{ task.id }}" class="btn btn-dark card-link">Mark as Complete</a>
+      <!-- If task in completed show mark as uncomplete button -->
       {% else %}
         <a href="/unmark/{{ task.id }}" class="btn btn-dark card-link">Mark as Uncomplete</a>
       {% endif %}
+      <!-- Delete button -->
       <a href="/delete/{{ task.id }}" class="btn btn-dark card-link">Delete Task</a>
       <br>
     </div>
