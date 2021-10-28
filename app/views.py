@@ -20,9 +20,11 @@ def flash_unmark():
 	flash('Successfully unmarked assessment.')
 def flash_mark():
 	flash('Successfully marked assessment as complete.')
+def flash_delete():
+	flash('Successfully deleted assessment.')
 
 # Home page route
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def home():
 	# Sets home description
 	description = home_description
@@ -35,7 +37,7 @@ def home():
 	return render_template(home_template,title=home_title,description=description,tasks=tasks,link="")
 
 # Home page route for marking task as complete
-@app.route('/mark/<task_id>', methods=['GET', 'POST'])
+@app.route('/mark/<task_id>', methods=['GET'])
 def mark(task_id):
 	# Sets home description
 	description = home_description
@@ -53,7 +55,7 @@ def mark(task_id):
 	return render_template(home_template,title=home_title,description=description,tasks=tasks,link="")
 
 # Home page route for marking task as uncomplete
-@app.route('/unmark/<task_id>', methods=['GET', 'POST'])
+@app.route('/unmark/<task_id>', methods=['GET'])
 def unmark(task_id):
 	# Sets home description
 	description = home_description
@@ -71,7 +73,7 @@ def unmark(task_id):
 	return render_template(home_template,title=home_title,description=description,tasks=tasks,link="")
 
 # Home page route for deleting task
-@app.route('/delete/<task_id>', methods=['GET', 'POST'])
+@app.route('/delete/<task_id>', methods=['GET'])
 def delete(task_id):
 	# Sets home description
 	description = home_description
@@ -86,7 +88,7 @@ def delete(task_id):
 	# If there is at least one task, remove description
 	if len(tasks) > 0 :
 		description = ''
-	flash('Successfult deleted assessment.')
+	flash_delete()
 	# Return the render template
 	return render_template(home_template,title=home_title,description=description,tasks=tasks,link="")
 
@@ -107,7 +109,7 @@ def create():
 	return render_template('create.html',title='Create Assessments',form=form,task=0)
 
 # Complete route for all completed tasks
-@app.route('/complete', methods=['GET', 'POST'])
+@app.route('/complete', methods=['GET'])
 def complete():
 	# Sets description
 	completed_description = comp_description
@@ -120,7 +122,7 @@ def complete():
 	return render_template(home_template,title=completed_title,description=completed_description,tasks=tasks,link=completed_link)
 
 # Complete unmark route for unmarking a task by id under complete assessments
-@app.route('/complete/unmark/<task_id>', methods=['GET', 'POST'])
+@app.route('/complete/unmark/<task_id>', methods=['GET'])
 def unmark_completed(task_id):
 	# Sets description
 	completed_description = comp_description
@@ -138,7 +140,7 @@ def unmark_completed(task_id):
 	return render_template(home_template,title=completed_title,description=completed_description,tasks=tasks,link=completed_link)
 
 # Complete delete route for deleting a task by id under complete assessments
-@app.route('/complete/delete/<task_id>', methods=['GET', 'POST'])
+@app.route('/complete/delete/<task_id>', methods=['GET'])
 def delete_completed(task_id):
 	# Sets description
 	completed_description = comp_description
@@ -153,12 +155,12 @@ def delete_completed(task_id):
 	# If there is at least one task, remove description
 	if len(tasks) > 0 :
 		completed_description = ''
-	flash_unmark()
+	flash_delete()
 	# Return the render template
 	return render_template(home_template,title=completed_title,description=completed_description,tasks=tasks,link=completed_link)
 
 # Uncomplete route for showing uncomplete assessments
-@app.route('/uncomplete', methods=['GET', 'POST'])
+@app.route('/uncomplete', methods=['GET'])
 def uncomplete():
 	# Sets description
 	uncomplete_description = uncomp_description
@@ -171,7 +173,7 @@ def uncomplete():
 	return render_template(home_template,title=uncomplete_title,description=uncomplete_description,tasks=tasks,link=uncomplete_link)
 
 # Uncomplete mark route for marking task as complete under uncomplete assessments
-@app.route('/uncomplete/mark/<task_id>', methods=['GET', 'POST'])
+@app.route('/uncomplete/mark/<task_id>', methods=['GET'])
 def mark_complete(task_id):
 	# Sets description
 	uncomplete_description = uncomp_description
@@ -189,7 +191,7 @@ def mark_complete(task_id):
 	return render_template(home_template,title=uncomplete_title,description=uncomplete_description,tasks=tasks,link=uncomplete_link)
 
 # Uncomplete delete route for deleting task in uncomplete assessments
-@app.route('/uncomplete/delete/<task_id>', methods=['GET', 'POST'])
+@app.route('/uncomplete/delete/<task_id>', methods=['GET'])
 def delete_uncomplete(task_id):
 	# Sets description
 	uncomplete_description = uncomp_description
@@ -204,7 +206,7 @@ def delete_uncomplete(task_id):
 	# If there is at least one task, remove description
 	if len(tasks) > 0 :
 		uncomplete_description = ''
-	flash_mark()
+	flash_delete()
 	# Return the render template
 	return render_template(home_template,title=uncomplete_title,description=uncomplete_description,tasks=tasks,link=uncomplete_link)
 
