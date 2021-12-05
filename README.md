@@ -35,9 +35,7 @@ Each assessments takes:
 - explanation of how to include accessibility in the web application.
 - all required references for content used.
 
-## Implementation
-
-### Templating
+## Templating
 
 - employs good use of templates.
 - implemented a template that integrates boot-strap.
@@ -45,7 +43,7 @@ Each assessments takes:
 - provides appropriate presentation of content.
 - generated content is HTML5 and CSS3 compliant.
 
-### Model & Logic
+## Model & Logic
 
 - application fully meets the specificiation.
 - code style is consistent and of high quality.
